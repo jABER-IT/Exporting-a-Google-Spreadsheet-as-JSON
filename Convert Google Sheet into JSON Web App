@@ -1,0 +1,17 @@
+// Web Url- https://codewithcurt.com/convert-google-sheet-into-json-web-app/
+
+function doGet() {
+  var content = getSheetData();
+  var contentObject = {GoogleSheetData: content}
+  return ContentService.createTextOutput(JSON.stringify(contentObject) ).setMimeType(ContentService.MimeType.JSON); 
+}
+
+function getSheetData()  { 
+  var ss= SpreadsheetApp.getActiveSpreadsheet();
+  var dataSheet = ss.getSheetByName('DATA'); 
+  var dataRange = dataSheet.getDataRange();
+  var dataValues = dataRange.getValues();  
+  return dataValues;
+}
+
+
